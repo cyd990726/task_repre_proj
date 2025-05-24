@@ -1,0 +1,7 @@
+1.24凌晨
+sz上跑了xdistral、odis、updet-m各5组l
+1.27林凌晨
+重新跑distral_sz-4、odis_sz_1、odis_sz_3，updet-m-sz-4
+跑了一组distral的MMM,2组0dis的MMM
+1.29凌晨
+跑了2组updet-l的MMM，5组xdistral的marine、1组updet-m的marine、3组updet-l的marine
