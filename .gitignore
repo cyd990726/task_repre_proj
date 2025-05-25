@@ -4,3 +4,4 @@ outputs/
 .*
 !.git
 !.gitignore
+!.vscode/

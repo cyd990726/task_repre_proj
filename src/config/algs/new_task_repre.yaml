@@ -20,7 +20,7 @@ target_update_interval: 200
 
 # use the Q_Learner to train
 agent_output_type: "q"
-learner: "mt_xtrans_learner"
+learner: "mt_new_task_repre_learner"
 double_q: True
 mixer: "mt_attn2_hx"
 mixing_embed_dim: 32
@@ -51,11 +51,21 @@ entity_embed_dim: 64
 attn_embed_dim: 8
 
 # mac
-mac: "mt_xtrans_mac"
+mac: "mt_new_task_repre_mac"
 
 # params related with transfer training
 breakpoint_training: False
 
 save_model_interval: 200000
 
-name: "xtrans_train"
+name: "new_task_repre_train"
+
+
+# new method of task representation learning
+# model_paths: ["single_task_models/2s3z/sota__whj_2s3z_first_2024-04-19_16-12-42", "single_task_models/3s5z/sota__whj_3s5z_first_2024-04-19_16-13-10", "single_task_models/3s5z_vs_3s6z/sota__whj_3s5z_vs_3s6z_first_2024-04-22_15-18-35"]
+model_paths: ["single_task_models/MMM/sota__whj_MMM_first_2024-04-17_19-14-32", "single_task_models/MMM2/sota__whj_MMM2_first_2024-04-17_19-29-49", "single_task_models/MMM4/sota__whj_MMM4_first_2024-04-17_19-30-31"]
+single_task_runner: "single_runner"
+single_task_mac: "basic_dc_mac"
+single_task_agent: "sota"
+single_task_learner: "dc_learner"
+new_pretrain_method: True

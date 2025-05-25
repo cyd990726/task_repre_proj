@@ -27,6 +27,8 @@ REGISTRY["latent_q_learner"] = LatentQLearner
 from .multi_task import XDistralLearner as MultiTaskXDistraLeaner
 from .multi_task import OriginalXDistralLearner
 from .multi_task import XDistralWLearner as MultiTaskXDistraWLeaner
+from .multi_task import NewTaskRepreLearner
 REGISTRY["mt_xdistral_learner"] = MultiTaskXDistraLeaner
 REGISTRY["original_xdistral_learner"] = OriginalXDistralLearner
 REGISTRY["mt_xdistral_weight_learner"] = MultiTaskXDistraWLeaner
+REGISTRY["mt_new_task_repre_learner"] = NewTaskRepreLearner

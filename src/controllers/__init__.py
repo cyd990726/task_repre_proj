@@ -25,6 +25,7 @@ from .multi_task import MACCMAC
 
 from .multi_task import XDistralMAC as MultiTaskXDistralMAC
 from .multi_task import XDistralWMAC as MultiTaskXDistralWMAC
+from .multi_task import NewTaskRepreMAC as MultiTaskNewTaskRepreMAC
 
 REGISTRY["mt_trans_mac"] = MultiTaskTransMAC
 REGISTRY["mt_xtrans_mac"] = MultiTaskXTransMAC
@@ -34,3 +35,4 @@ REGISTRY["mt_updet_mac"] = UPDeTMAC
 REGISTRY["mt_macc_mac"] = UPDeTMAC
 REGISTRY["mt_xdistral_mac"] = MultiTaskXDistralMAC
 REGISTRY["mt_xdistral_weight_mac"] = MultiTaskXDistralWMAC
+REGISTRY["mt_new_task_repre_mac"] = MultiTaskNewTaskRepreMAC

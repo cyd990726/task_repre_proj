@@ -6,3 +6,4 @@ from .latent_q_learner import LatentQLearner
 from .xdistral_learner import XDistralLearner
 from .original_distral_learner import XDistralLearner as OriginalXDistralLearner
 from .xdistral_w_learner import XDistralLearner as XDistralWLearner
+from .new_task_repre_learner import NewTaskRepreLearner

@@ -5,3 +5,4 @@ from .mt_updet_controller import UPDeTMAC
 from .macc_controller import MACCMAC
 from .xdistral_controller import XDistralMAC
 from .xdistral_controller import XDistralMAC as XDistralWMAC
+from .new_task_repre_controller import NewTaskRepreMAC
