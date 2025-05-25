@@ -1,6 +1,4 @@
 *.out
-results/
-outputs/
 .*
 !.git
 !.gitignore
