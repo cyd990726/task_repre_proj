@@ -1,0 +1,507 @@
+[INFO 00:00:28] pymarl Running command 'my_main'
+[INFO 00:00:28] pymarl Started run with ID "1"
+[DEBUG 00:00:28] pymarl Starting Heartbeat
+[DEBUG 00:00:28] my_main Started
+[WARNING 00:00:28] my_main CUDA flag use_cuda was switched OFF automatically because no CUDA devices are available!
+[INFO 00:00:28] my_main Experiment Parameters:
+[INFO 00:00:28] my_main 
+
+{   'action_selector': 'epsilon_greedy',
+    'agent': 'sota',
+    'agent_output_type': 'q',
+    'attn_embed_dim': 8,
+    'batch_size': 16,
+    'batch_size_run': 12,
+    'buffer_cpu_only': True,
+    'buffer_size': 5000,
+    'checkpoint_path': '',
+    'critic_lr': 0.0005,
+    'double_q': True,
+    'entity_embed_dim': 64,
+    'env': 'sc2',
+    'env_args': {   'continuing_episode': False,
+                    'debug': False,
+                    'difficulty': '7',
+                    'game_version': None,
+                    'heuristic_ai': False,
+                    'heuristic_rest': False,
+                    'map_name': '3s3z',
+                    'move_amount': 2,
+                    'obs_all_health': True,
+                    'obs_instead_of_state': False,
+                    'obs_last_action': False,
+                    'obs_own_health': True,
+                    'obs_pathing_grid': False,
+                    'obs_terrain_height': False,
+                    'obs_timestep_number': False,
+                    'replay_dir': '',
+                    'replay_prefix': '',
+                    'reward_death_value': 10,
+                    'reward_defeat': 0,
+                    'reward_negative_scale': 0.5,
+                    'reward_only_positive': True,
+                    'reward_scale': True,
+                    'reward_scale_rate': 20,
+                    'reward_sparse': False,
+                    'reward_win': 200,
+                    'seed': 1400339,
+                    'state_last_action': True,
+                    'state_timestep_number': False,
+                    'step_mul': 8},
+    'epsilon_anneal_time': 50000,
+    'epsilon_finish': 0.05,
+    'epsilon_start': 1.0,
+    'evaluate': False,
+    'gamma': 0.99,
+    'grad_norm_clip': 10,
+    'hypernet_embed': 64,
+    'hypernet_layers': 2,
+    'id_length': 4,
+    'label': 'default_label',
+    'learner': 'dc_learner',
+    'learner_log_interval': 10000,
+    'load_step': 0,
+    'local_results_path': 'results',
+    'log_interval': 10000,
+    'lr': 0.0005,
+    'mac': 'basic_dc_mac',
+    'max_agent': 15,
+    'mixer': 'attn2_h',
+    'mixing_embed_dim': 32,
+    'name': 'sota',
+    'obs_agent_id': True,
+    'obs_last_action': True,
+    'optim_alpha': 0.99,
+    'optim_eps': 1e-05,
+    'optim_type': 'Adam',
+    'remark': 'single',
+    'repeat_id': 1,
+    'rnn_hidden_dim': 64,
+    'runner': 'parallel',
+    'runner_log_interval': 10000,
+    'save_model': True,
+    'save_model_interval': 2000000,
+    'save_replay': False,
+    'seed': 1400339,
+    't_max': 2050000,
+    'target_update_interval': 200,
+    'test_greedy': True,
+    'test_interval': 10000,
+    'test_nepisode': 24,
+    'use_cuda': False,
+    'use_tensorboard': True,
+    'weight_decay': 0}
+
+[INFO 00:00:28] my_main Beginning training for 2050000 timesteps
+[INFO 00:00:28] absl Launching SC2: /home/dell/StarCraftII/Versions/Base69232/SC2_x64 -listen 127.0.0.1 -port 44669 -dataDir /home/dell/StarCraftII/ -tempDir /tmp/sc-1jrd5dip/
+[INFO 00:00:28] absl Launching SC2: /home/dell/StarCraftII/Versions/Base69232/SC2_x64 -listen 127.0.0.1 -port 35847 -dataDir /home/dell/StarCraftII/ -tempDir /tmp/sc-fmcx_kjq/
+[INFO 00:00:28] absl Launching SC2: /home/dell/StarCraftII/Versions/Base69232/SC2_x64 -listen 127.0.0.1 -port 34423 -dataDir /home/dell/StarCraftII/ -tempDir /tmp/sc-gykqw335/
+[INFO 00:00:28] absl Launching SC2: /home/dell/StarCraftII/Versions/Base69232/SC2_x64 -listen 127.0.0.1 -port 45339 -dataDir /home/dell/StarCraftII/ -tempDir /tmp/sc-kblhrasg/
+[INFO 00:00:28] absl Launching SC2: /home/dell/StarCraftII/Versions/Base69232/SC2_x64 -listen 127.0.0.1 -port 45281 -dataDir /home/dell/StarCraftII/ -tempDir /tmp/sc-101l5inh/
+[INFO 00:00:28] absl Launching SC2: /home/dell/StarCraftII/Versions/Base69232/SC2_x64 -listen 127.0.0.1 -port 39615 -dataDir /home/dell/StarCraftII/ -tempDir /tmp/sc-m4_omsc3/
+[INFO 00:00:28] absl Launching SC2: /home/dell/StarCraftII/Versions/Base69232/SC2_x64 -listen 127.0.0.1 -port 42431 -dataDir /home/dell/StarCraftII/ -tempDir /tmp/sc-7d5mtdev/
+[INFO 00:00:28] absl Launching SC2: /home/dell/StarCraftII/Versions/Base69232/SC2_x64 -listen 127.0.0.1 -port 40643 -dataDir /home/dell/StarCraftII/ -tempDir /tmp/sc-6y6jd2fo/
+[INFO 00:00:28] absl Launching SC2: /home/dell/StarCraftII/Versions/Base69232/SC2_x64 -listen 127.0.0.1 -port 45353 -dataDir /home/dell/StarCraftII/ -tempDir /tmp/sc-j99qr09q/
+[INFO 00:00:28] absl Launching SC2: /home/dell/StarCraftII/Versions/Base69232/SC2_x64 -listen 127.0.0.1 -port 37543 -dataDir /home/dell/StarCraftII/ -tempDir /tmp/sc-8x2rhuqs/
+[INFO 00:00:28] absl Launching SC2: /home/dell/StarCraftII/Versions/Base69232/SC2_x64 -listen 127.0.0.1 -port 45921 -dataDir /home/dell/StarCraftII/ -tempDir /tmp/sc-hn_7tp2a/
+[INFO 00:00:28] absl Launching SC2: /home/dell/StarCraftII/Versions/Base69232/SC2_x64 -listen 127.0.0.1 -port 40227 -dataDir /home/dell/StarCraftII/ -tempDir /tmp/sc-dnz5a4k2/
+[INFO 00:00:28] absl Connecting to: ws://127.0.0.1:34423/sc2api, attempt: 0, running: True
+Version: B69232 (SC2.4.6-Publish)
+Build: Oct 23 2018 01:43:04
+Command Line: '"/home/dell/StarCraftII/Versions/Base69232/SC2_x64" -listen 127.0.0.1 -port 34423 -dataDir /home/dell/StarCraftII/ -tempDir /tmp/sc-gykqw335/'
+Version: B69232 (SC2.4.6-Publish)
+Build: Oct 23 2018 01:43:04
+Command Line: '"/home/dell/StarCraftII/Versions/Base69232/SC2_x64" -listen 127.0.0.1 -port 42431 -dataDir /home/dell/StarCraftII/ -tempDir /tmp/sc-7d5mtdev/'
+[INFO 00:00:28] absl Connecting to: ws://127.0.0.1:42431/sc2api, attempt: 0, running: True
+Version: B69232 (SC2.4.6-Publish)
+Build: Oct 23 2018 01:43:04
+Command Line: '"/home/dell/StarCraftII/Versions/Base69232/SC2_x64" -listen 127.0.0.1 -port 44669 -dataDir /home/dell/StarCraftII/ -tempDir /tmp/sc-1jrd5dip/'
+Version: B69232 (SC2.4.6-Publish)
+Build: Oct 23 2018 01:43:04
+[INFO 00:00:28] absl Connecting to: ws://127.0.0.1:44669/sc2api, attempt: 0, running: True
+[INFO 00:00:28] absl Connecting to: ws://127.0.0.1:40643/sc2api, attempt: 0, running: True
+Command Line: '"/home/dell/StarCraftII/Versions/Base69232/SC2_x64" -listen 127.0.0.1 -port 40643 -dataDir /home/dell/StarCraftII/ -tempDir /tmp/sc-6y6jd2fo/'
+Version: B69232 (SC2.4.6-Publish)
+Build: Oct 23 2018 01:43:04
+Command Line: '"/home/dell/StarCraftII/Versions/Base69232/SC2_x64" -listen 127.0.0.1 -port 45353 -dataDir /home/dell/StarCraftII/ -tempDir /tmp/sc-j99qr09q/'
+[INFO 00:00:28] absl Connecting to: ws://127.0.0.1:45353/sc2api, attempt: 0, running: True
+[INFO 00:00:28] absl Connecting to: ws://127.0.0.1:37543/sc2api, attempt: 0, running: True
+Version: B69232 (SC2.4.6-Publish)
+Build: Oct 23 2018 01:43:04
+Command Line: '"/home/dell/StarCraftII/Versions/Base69232/SC2_x64" -listen 127.0.0.1 -port 45281 -dataDir /home/dell/StarCraftII/ -tempDir /tmp/sc-101l5inh/'
+Version: B69232 (SC2.4.6-Publish)
+Build: Oct 23 2018 01:43:04
+Version: B69232 (SC2.4.6-Publish)
+[INFO 00:00:28] absl Connecting to: ws://127.0.0.1:45281/sc2api, attempt: 0, running: True
+Build: Oct 23 2018 01:43:04
+Version: B69232 (SC2.4.6-Publish)
+Build: Oct 23 2018 01:43:04
+Command Line: '"/home/dell/StarCraftII/Versions/Base69232/SC2_x64" -listen 127.0.0.1 -port 37543 -dataDir /home/dell/StarCraftII/ -tempDir /tmp/sc-8x2rhuqs/'
+Command Line: '"/home/dell/StarCraftII/Versions/Base69232/SC2_x64" -listen 127.0.0.1 -port 39615 -dataDir /home/dell/StarCraftII/ -tempDir /tmp/sc-m4_omsc3/'
+Command Line: '"/home/dell/StarCraftII/Versions/Base69232/SC2_x64" -listen 127.0.0.1 -port 35847 -dataDir /home/dell/StarCraftII/ -tempDir /tmp/sc-fmcx_kjq/'
+[INFO 00:00:28] absl Connecting to: ws://127.0.0.1:35847/sc2api, attempt: 0, running: True
+[INFO 00:00:28] absl Connecting to: ws://127.0.0.1:39615/sc2api, attempt: 0, running: True
+Version: B69232 (SC2.4.6-Publish)
+Build: Oct 23 2018 01:43:04
+[INFO 00:00:28] absl Connecting to: ws://127.0.0.1:40227/sc2api, attempt: 0, running: True
+[INFO 00:00:28] absl Connecting to: ws://127.0.0.1:45921/sc2api, attempt: 0, running: True
+Version: B69232 (SC2.4.6-Publish)
+Build: Oct 23 2018 01:43:04
+Command Line: '"/home/dell/StarCraftII/Versions/Base69232/SC2_x64" -listen 127.0.0.1 -port 40227 -dataDir /home/dell/StarCraftII/ -tempDir /tmp/sc-dnz5a4k2/'
+Version: B69232 (SC2.4.6-Publish)
+Build: Oct 23 2018 01:43:04
+Command Line: '"/home/dell/StarCraftII/Versions/Base69232/SC2_x64" -listen 127.0.0.1 -port 45921 -dataDir /home/dell/StarCraftII/ -tempDir /tmp/sc-hn_7tp2a/'
+Command Line: '"/home/dell/StarCraftII/Versions/Base69232/SC2_x64" -listen 127.0.0.1 -port 45339 -dataDir /home/dell/StarCraftII/ -tempDir /tmp/sc-kblhrasg/'
+[INFO 00:00:28] absl Connecting to: ws://127.0.0.1:45339/sc2api, attempt: 0, running: True
+Starting up...
+Starting up...
+Starting up...
+Starting up...
+Starting up...
+Starting up...
+Starting up...
+Starting up...
+Starting up...
+Starting up...
+Starting up...
+Starting up...
+Startup Phase 1 complete
+Startup Phase 1 complete
+Startup Phase 1 complete
+Startup Phase 1 complete
+Startup Phase 1 complete
+Startup Phase 1 complete
+Startup Phase 1 complete
+Startup Phase 1 complete
+Startup Phase 1 complete
+Startup Phase 1 complete
+Startup Phase 1 complete
+Startup Phase 1 complete
+[INFO 00:00:29] absl Connecting to: ws://127.0.0.1:34423/sc2api, attempt: 1, running: True
+[INFO 00:00:29] absl Connecting to: ws://127.0.0.1:40643/sc2api, attempt: 1, running: True
+[INFO 00:00:29] absl Connecting to: ws://127.0.0.1:37543/sc2api, attempt: 1, running: True
+[INFO 00:00:29] absl Connecting to: ws://127.0.0.1:44669/sc2api, attempt: 1, running: True
+[INFO 00:00:29] absl Connecting to: ws://127.0.0.1:45281/sc2api, attempt: 1, running: True
+[INFO 00:00:29] absl Connecting to: ws://127.0.0.1:45353/sc2api, attempt: 1, running: True
+[INFO 00:00:29] absl Connecting to: ws://127.0.0.1:39615/sc2api, attempt: 1, running: True
+[INFO 00:00:29] absl Connecting to: ws://127.0.0.1:45921/sc2api, attempt: 1, running: True
+[INFO 00:00:29] absl Connecting to: ws://127.0.0.1:42431/sc2api, attempt: 1, running: True
+[INFO 00:00:29] absl Connecting to: ws://127.0.0.1:35847/sc2api, attempt: 1, running: True
+[INFO 00:00:29] absl Connecting to: ws://127.0.0.1:40227/sc2api, attempt: 1, running: True
+[INFO 00:00:29] absl Connecting to: ws://127.0.0.1:45339/sc2api, attempt: 1, running: True
+Startup Phase 2 complete
+Creating stub renderer...
+Startup Phase 2 complete
+Creating stub renderer...
+Startup Phase 2 complete
+Creating stub renderer...
+Startup Phase 2 complete
+Creating stub renderer...
+Startup Phase 2 complete
+Creating stub renderer...
+Startup Phase 2 complete
+Creating stub renderer...
+Startup Phase 2 complete
+Creating stub renderer...
+Startup Phase 2 complete
+Creating stub renderer...
+Startup Phase 2 complete
+Creating stub renderer...
+Startup Phase 2 complete
+Creating stub renderer...
+Startup Phase 2 complete
+Creating stub renderer...
+Startup Phase 2 complete
+Creating stub renderer...
+Listening on: 127.0.0.1:40227
+Listening on: 127.0.0.1:45281
+Listening on: 127.0.0.1:44669
+Startup Phase 3 complete. Ready for commands.
+Startup Phase 3 complete. Ready for commands.
+Listening on: 127.0.0.1:42431
+Listening on: 127.0.0.1:35847
+Startup Phase 3 complete. Ready for commands.
+Listening on: 127.0.0.1:39615
+Startup Phase 3 complete. Ready for commands.
+Startup Phase 3 complete. Ready for commands.
+Listening on: 127.0.0.1:40643
+Startup Phase 3 complete. Ready for commands.
+Listening on: 127.0.0.1:34423
+Startup Phase 3 complete. Ready for commands.
+Startup Phase 3 complete. Ready for commands.
+Listening on: 127.0.0.1:45353
+Startup Phase 3 complete. Ready for commands.
+Listening on: 127.0.0.1:37543
+Startup Phase 3 complete. Ready for commands.
+Listening on: 127.0.0.1:45339
+Startup Phase 3 complete. Ready for commands.
+Listening on: 127.0.0.1:45921
+Startup Phase 3 complete. Ready for commands.
+[INFO 00:00:30] absl Connecting to: ws://127.0.0.1:34423/sc2api, attempt: 2, running: True
+[INFO 00:00:30] absl Connecting to: ws://127.0.0.1:45353/sc2api, attempt: 2, running: True
+[INFO 00:00:30] absl Connecting to: ws://127.0.0.1:42431/sc2api, attempt: 2, running: True
+[INFO 00:00:30] absl Connecting to: ws://127.0.0.1:40643/sc2api, attempt: 2, running: True
+[INFO 00:00:30] absl Connecting to: ws://127.0.0.1:45921/sc2api, attempt: 2, running: True
+[INFO 00:00:30] absl Connecting to: ws://127.0.0.1:37543/sc2api, attempt: 2, running: True
+[INFO 00:00:30] absl Connecting to: ws://127.0.0.1:44669/sc2api, attempt: 2, running: True
+[INFO 00:00:30] absl Connecting to: ws://127.0.0.1:45281/sc2api, attempt: 2, running: True
+[INFO 00:00:30] absl Connecting to: ws://127.0.0.1:39615/sc2api, attempt: 2, running: True
+[INFO 00:00:30] absl Connecting to: ws://127.0.0.1:40227/sc2api, attempt: 2, running: True
+[INFO 00:00:30] absl Connecting to: ws://127.0.0.1:35847/sc2api, attempt: 2, running: True
+[INFO 00:00:30] absl Connecting to: ws://127.0.0.1:45339/sc2api, attempt: 2, running: True
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Entering load game phase.
+Launching next game.
+Entering load game phase.
+Launching next game.
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Entering load game phase.
+Launching next game.
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Entering load game phase.
+Launching next game.
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Entering load game phase.
+Entering load game phase.
+Launching next game.
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 2
+Next launch phase started: 3
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Entering load game phase.
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Launching next game.
+Entering load game phase.
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Next launch phase started: 2
+Next launch phase started: 3
+Entering load game phase.
+Launching next game.
+Next launch phase started: 4
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Next launch phase started: 2
+Next launch phase started: 3
+Entering load game phase.
+Launching next game.
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Requesting to join a single player game
+Configuring interface options
+Next launch phase started: 4
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Entering load game phase.
+Next launch phase started: 4
+Launching next game.
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 2
+Next launch phase started: 3
+Requesting to join a single player game
+Configuring interface options
+Configure: raw interface enabled
+Configure: feature layer interface disabled
+Configure: score interface disabled
+Configure: render interface disabled
+Next launch phase started: 4
+Next launch phase started: 2
+Next launch phase started: 3
+Entering load game phase.
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Launching next game.
+Next launch phase started: 4
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Next launch phase started: 2
+Next launch phase started: 3
+Next launch phase started: 4
+Next launch phase started: 5
+Next launch phase started: 6
+Next launch phase started: 7
+Next launch phase started: 8
+Game has started.
+Game has started.
+Game has started.
+Game has started.
+Game has started.
+Sending ResponseJoinGame
+Game has started.
+Game has started.
+Game has started.
+Game has started.
+Sending ResponseJoinGame
+Sending ResponseJoinGame
+Sending ResponseJoinGame
+Sending ResponseJoinGame
+Sending ResponseJoinGame
+Sending ResponseJoinGame
+Sending ResponseJoinGame
+Game has started.
+Sending ResponseJoinGame
+Game has started.
+Sending ResponseJoinGame
+Game has started.
+Sending ResponseJoinGame
+Sending ResponseJoinGame
+/home/rl-cyd/run_project/task_repre_proj/src/components/episode_buffer.py:103: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at ../torch/csrc/utils/tensor_new.cpp:245.)
+  v = th.tensor(v, dtype=dtype, device=self.device)
+/home/rl-cyd/run_project/task_repre_proj/src/components/episode_buffer.py:103: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.clone().detach() or sourceTensor.clone().detach().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  v = th.tensor(v, dtype=dtype, device=self.device)
+[INFO 00:00:34] my_main t_env: 600 / 2050000
+[INFO 00:00:34] my_main Estimated time left: 20 minutes, 39 seconds. Time passed: 6 seconds
+[INFO 00:00:36] my_main Saving models to /home/rl-cyd/run_project/task_repre_proj/results/sc2/3s3z/sota/models/sota__single_2025-05-27_00-00-28/600
+[INFO 01:27:41] my_main Recent Stats | t_env:      10265 | Episode:      192
+battle_won_mean:           0.0000	dead_allies_mean:          6.0000	dead_enemies_mean:         0.0000	ep_length_mean:           50.0000
+epsilon:                   1.0000	grad_norm:                 0.7663	loss:                      0.0501	q_taken_mean:             -0.0127
+return_mean:               4.1901	return_std:                0.8107	target_mean:               0.0151	td_error_abs:              0.1675
+test_battle_won_mean:      0.0000	test_dead_allies_mean:     5.0417	test_dead_enemies_mean:    0.0833	test_ep_length_mean:     119.4583
+test_return_mean:          0.6362	test_return_std:           0.8984	
+[INFO 02:06:08] my_main t_env: 10949 / 2050000
+[INFO 02:06:08] my_main Estimated time left: 17 days, 4 hours, 19 minutes, 20 seconds. Time passed: 2 hours, 5 minutes, 40 seconds
+[INFO 02:11:06] my_main Updated target network
+[INFO 11:42:41] my_main Recent Stats | t_env:      20276 | Episode:      384
+battle_won_mean:           0.0000	dead_allies_mean:          6.0000	dead_enemies_mean:         0.0625	ep_length_mean:           51.9505
+epsilon:                   0.8050	grad_norm:                 0.4317	loss:                      0.0314	q_taken_mean:             -0.0066
+return_mean:               4.3326	return_std:                0.8795	target_mean:               0.0094	td_error_abs:              0.1228
+test_battle_won_mean:      0.0000	test_dead_allies_mean:     5.1667	test_dead_enemies_mean:    0.3333	test_ep_length_mean:     114.8125
+test_return_mean:          3.6653	test_return_std:           1.1380	
+[INFO 13:10:16] my_main t_env: 21517 / 2050000
+[INFO 13:10:16] my_main Estimated time left: 88 days, 12 hours, 36 minutes, 31 seconds. Time passed: 13 hours, 9 minutes, 47 seconds
+[INFO 13:15:14] my_main Updated target network
+[INFO 22:36:08] my_main Recent Stats | t_env:      30573 | Episode:      588
+battle_won_mean:           0.0000	dead_allies_mean:          5.9918	dead_enemies_mean:         0.2279	ep_length_mean:           51.9017
+epsilon:                   0.6028	grad_norm:                 0.3339	loss:                      0.0246	q_taken_mean:              0.0105
+return_mean:               4.9671	return_std:                0.9332	target_mean:               0.0195	td_error_abs:              0.1077
+test_battle_won_mean:      0.0556	test_dead_allies_mean:     5.2917	test_dead_enemies_mean:    1.7222	test_ep_length_mean:     102.7361
+test_return_mean:          7.0504	test_return_std:           1.9279	
+[INFO 23:48:10] my_main t_env: 31843 / 2050000
+[INFO 23:48:10] my_main Estimated time left: 86 days, 13 hours, 54 minutes, 7 seconds. Time passed: 23 hours, 47 minutes, 41 seconds
+[INFO 23:53:32] my_main Updated target network
+[INFO 05:28:12] my_main Recent Stats | t_env:      40593 | Episode:      792
+battle_won_mean:           0.0000	dead_allies_mean:          5.9926	dead_enemies_mean:         0.6575	ep_length_mean:           51.5807
+epsilon:                   0.4072	grad_norm:                 0.2737	loss:                      0.0214	q_taken_mean:              0.0241
+return_mean:               5.7703	return_std:                1.0266	target_mean:               0.0315	td_error_abs:              0.1006
+test_battle_won_mean:      0.1042	test_dead_allies_mean:     5.3333	test_dead_enemies_mean:    2.5000	test_ep_length_mean:      95.6979
+test_return_mean:          9.2065	test_return_std:           2.1468	
+[INFO 06:00:23] my_main Updated target network
+[INFO 06:13:12] my_main t_env: 42407 / 2050000
+[INFO 06:13:12] my_main Estimated time left: 50 days, 19 hours, 33 minutes, 55 seconds. Time passed: 1 days, 6 hours, 12 minutes, 44 seconds
+[INFO 10:43:45] my_main Recent Stats | t_env:      51117 | Episode:     1008
+battle_won_mean:           0.0000	dead_allies_mean:          5.9932	dead_enemies_mean:         1.0093	ep_length_mean:           51.0460
+epsilon:                   0.2061	grad_norm:                 0.2746	loss:                      0.0199	q_taken_mean:              0.0486
+return_mean:               6.5256	return_std:                1.1801	target_mean:               0.0534	td_error_abs:              0.0981
+test_battle_won_mean:      0.1917	test_dead_allies_mean:     5.2083	test_dead_enemies_mean:    3.0417	test_ep_length_mean:      89.1083
+test_return_mean:         10.7601	test_return_std:           2.4311	
+[INFO 10:59:36] my_main Updated target network
+[INFO 11:15:05] my_main t_env: 52539 / 2050000
+[INFO 11:15:05] my_main Estimated time left: 41 days, 7 hours, 54 minutes, 45 seconds. Time passed: 1 days, 11 hours, 14 minutes, 37 seconds
