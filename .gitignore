@@ -4,3 +4,6 @@
 !.gitignore
 !.vscode/
 results/scared
+
+__pycache__/
+*.pyc
