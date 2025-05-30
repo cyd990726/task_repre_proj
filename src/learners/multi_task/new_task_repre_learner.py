@@ -27,7 +27,18 @@ class NewTaskRepreLearner:
         self.surrogate_decomposer = mac.surrogate_decomposer
         self.task2decomposer = mac.task2decomposer
 
+         # 添加设备配置
+        self.device = th.device("cuda" if main_args.use_cuda else "cpu")
+
+
+        # 添加嵌入层（假设任务表征维度为 task_repre_dim）
+        self.embedding = th.nn.Linear(main_args.task_repre_dim, 128).to(self.device)  # 嵌入维度可调整
+        self.transpose_embedding = th.nn.Linear(main_args.task_repre_dim, 128).to(self.device)
+
         self.params = list(mac.parameters())  # 获取mac的参数
+        # 将新参数加入优化器
+        self.params += list(self.embedding.parameters())
+        self.params += list(self.transpose_embedding.parameters())
 
         self.last_target_update_episode = 0  # 初始化最后一次目标更新的环境步数
 
@@ -94,15 +105,24 @@ class NewTaskRepreLearner:
 
             mask = th.ones_like(task_returns)
 
-            # 训练5000步
-            for t in range(5000):
+            # 训练50000步
+            for t in range(50000):
                 # task repres 进行归一化
                 norm = th.norm(task_repres, dim=-1).unsqueeze(-1)
                 normed_task_repres = task_repres / norm
-                transposed_repres = th.transpose(normed_task_repres, 0, 1)
+                 # 新增嵌入层处理
+                embedded_repres = self.embedding(normed_task_repres)
+                # 先嵌入再转置
+                transposed_repres = self.transpose_embedding(normed_task_repres)
+                embedded_transposed = th.transpose(transposed_repres, 0, 1)
+                
+                # 对嵌入结果再次归一化
+                embedded_repres = F.normalize(embedded_repres, dim=-1)
+                embedded_transposed = F.normalize(embedded_transposed, dim=-1)
 
-                # 进行矩阵相乘得到估计的回报
-                expected_returns = normed_task_repres @ transposed_repres
+                # 修改矩阵相乘部分
+                expected_returns = embedded_repres @ embedded_transposed
+            
                 task_repre_loss = th.sqrt(((expected_returns - task_returns) ** 2).sum()) / mask.sum()
 
                 # 反向传播优化
