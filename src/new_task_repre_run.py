@@ -379,7 +379,8 @@ def get_task_returns(args, logger):
 
             runner.setup(scheme=scheme, groups=groups, preprocess=preprocess, mac=mac)
 
-            _, return_mean = runner.run()
+            return_mean = runner.run()
+            print("Task: {}, Return: {}".format(task, return_mean))
             returns.append(return_mean)
             # 关闭runner
             runner.close_env()

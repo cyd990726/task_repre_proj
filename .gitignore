@@ -6,5 +6,8 @@
 # 修正拼写错误并添加新规则
 results/sacred/
 
-__pycache__/
+**/__pycache__/
 *.pyc
+# 忽略所有包含debug的文件夹和文件
+**/*debug*/
+*debug*
