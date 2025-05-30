@@ -3,7 +3,8 @@
 !.git
 !.gitignore
 !.vscode/
-results/scared
+# 修正拼写错误并添加新规则
+results/sacred/
 
 __pycache__/
 *.pyc
