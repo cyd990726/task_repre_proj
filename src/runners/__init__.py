@@ -11,3 +11,5 @@ REGISTRY["mt_episode"] = MultiTaskEpisodeRunner
 
 from .multi_task import ParallelRunner as MultiTaskParallelRunner
 REGISTRY["mt_parallel"] = MultiTaskParallelRunner
+from .single_runner import SingleRunner
+REGISTRY["single_runner"] = SingleRunner
