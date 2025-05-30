@@ -15,7 +15,7 @@
             "program": "${workspaceFolder}/src/main.py",
             "console": "integratedTerminal",
             // 注意：这里的参数优先级是最高的。想改什么参数直接在这里改就行了
-            // 挂后台执行的命令为：nohup python3 -u src/main.py --config=new_task_repre_train --task-config=7sz --pretrain=False --use_tensorboard=True --remark=odis_7sz_1 &>odis_7sz_1.out &
+            // 挂后台执行的命令为：nohup python3 -u src/main.py --config=new_task_repre --task-config=7sz --pretrain=False --use_tensorboard=True --remark=odis_7sz_1 &>odis_7sz_1.out &
             "args":["--config=new_task_repre", "--task-config=7sz", "--use_tensorboard=True", "--pretrain=False","--remark=sz_debug", "--debug=True"]
         },
         
