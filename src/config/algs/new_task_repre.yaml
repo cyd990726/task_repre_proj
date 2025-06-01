@@ -60,19 +60,6 @@ save_model_interval: 200000
 
 name: "new_task_repre_train"
 
-
-# new method of task representation learning
-# model_paths: ["single_task_models/2s3z/sota__whj_2s3z_first_2024-04-19_16-12-42", "single_task_models/3s5z/sota__whj_3s5z_first_2024-04-19_16-13-10", "single_task_models/3s5z_vs_3s6z/sota__whj_3s5z_vs_3s6z_first_2024-04-22_15-18-35"]
-# model_paths: ["single_task_models/MMM/sota__whj_MMM_first_2024-04-17_19-14-32", "single_task_models/MMM2/sota__whj_MMM2_first_2024-04-17_19-29-49", "single_task_models/MMM4/sota__whj_MMM4_first_2024-04-17_19-30-31"]
-model_paths: [
-  "single_pre_train_model/3s3z",
-  "single_pre_train_model/3s4z",
-  "single_pre_train_model/3s5z",
-  "single_pre_train_model/4s7z",
-  "single_pre_train_model/2s3z_vs_2s4z",
-  "single_pre_train_model/3s5z_vs_3s6z",
-  "single_pre_train_model/3s6z_vs_3s7z"
-]
 single_task_runner: "single_runner"
 single_task_mac: "basic_dc_mac"
 single_task_agent: "sota"

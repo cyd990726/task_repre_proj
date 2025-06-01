@@ -8,3 +8,14 @@ task: "5MMM"
 train_tasks: ["MMM", "MMM2", "MMM3", "MMM4", "MMM5"]
 test_task: "MMM"
 test_tasks: ["MMM0", "MMM", "MMM1", "MMM2", "MMM3", "MMM4"]
+
+# new method of task representation learning
+# model_paths: ["single_task_models/2s3z/sota__whj_2s3z_first_2024-04-19_16-12-42", "single_task_models/3s5z/sota__whj_3s5z_first_2024-04-19_16-13-10", "single_task_models/3s5z_vs_3s6z/sota__whj_3s5z_vs_3s6z_first_2024-04-22_15-18-35"]
+# model_paths: ["single_task_models/MMM/sota__whj_MMM_first_2024-04-17_19-14-32", "single_task_models/MMM2/sota__whj_MMM2_first_2024-04-17_19-29-49", "single_task_models/MMM4/sota__whj_MMM4_first_2024-04-17_19-30-31"]
+model_paths: [
+  "single_pre_train_model/MMM",
+  "single_pre_train_model/MMM2",
+  "single_pre_train_model/MMM3",
+  "single_pre_train_model/MMM4",
+  "single_pre_train_model/MMM5"
+]
