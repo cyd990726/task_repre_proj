@@ -5,11 +5,13 @@ from .q_learner import QLearner
 from .dc_learner import DCLearner
 from .trans_learner import TransLearner
 from .xtrans_learner import XTransLearner
+from .new_repre_learner import NewRepreLearner
 
 REGISTRY["q_learner"] = QLearner
 REGISTRY["dc_learner"] = DCLearner
 REGISTRY["trans_learner"] = TransLearner
 REGISTRY["xtrans_learner"] = XTransLearner
+REGISTRY["new_repre_learner"] = NewRepreLearner
 
 
 # some multi-task learner

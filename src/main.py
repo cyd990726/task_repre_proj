@@ -21,6 +21,7 @@ from updet_l_train_run import run as updet_l_train_run
 from meta_distral_train_run import run as xdistral_train_run
 from original_distral_run import run as original_distral_run
 from new_task_repre_run import run as new_task_repre_run
+from new_repre_test import run as new_repre_test_run
 
 
 # 将sacred的日志输出到文件中，而不是输出到控制台
@@ -59,7 +60,10 @@ def my_main(_run, _config, _log):
         elif config.get("name") == "new_task_repre_train":
             new_task_repre_run(_run, config, _log)
     elif config.get("meta_test", False):  # 检查配置中是否有meta_test字段,如果没有则默认为False
-        meta_test_run(_run, config, _log)  # 如果meta_test=True,则调用meta_test_run函数运行meta测试逻辑
+        if config.get("name") == "new_repre_test":
+            new_repre_test_run(_run, config, _log)
+        elif config.get("name") == "xtrans_test":
+            meta_test_run(_run, config, _log)
 
     else:
         run(_run, config, _log)  # 如果meta_train和meta_test都不是True,则调用默认的run函数运行常规逻辑
