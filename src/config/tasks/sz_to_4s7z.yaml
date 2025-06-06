@@ -1,0 +1,28 @@
+# ----- MMM setting config -----
+
+# get env information
+env: "sc2"
+# # get task information
+# task: "MMM"
+# # define train tasks and test tasks
+# train_tasks: ["MMM", "MMM2", "MMM4"]
+# test_task: "MMM"
+# test_tasks: ["MMM0", "MMM", "MMM1", "MMM2", "MMM3", "MMM4"]
+
+# new method of task representation learning
+# model_paths: ["single_task_models/2s3z/sota__whj_2s3z_first_2024-04-19_16-12-42", "single_task_models/3s5z/sota__whj_3s5z_first_2024-04-19_16-13-10", "single_task_models/3s5z_vs_3s6z/sota__whj_3s5z_vs_3s6z_first_2024-04-22_15-18-35"]
+# model_paths: ["single_task_models/MMM/sota__whj_MMM_first_2024-04-17_19-14-32", "single_task_models/MMM2/sota__whj_MMM2_first_2024-04-17_19-29-49", "single_task_models/MMM4/sota__whj_MMM4_first_2024-04-17_19-30-31"]
+task: "sz_to_4s7z"
+
+model_paths: [
+  "single_pre_train_model/3s3z",
+  "single_pre_train_model/3s4z",
+  "single_pre_train_model/3s5z_vs_3s6z"
+]
+train_tasks: ["3s3z", "3s4z", "3s5z_vs_3s6z"]
+test_task: "4s7z"
+map_name: "4s7z"
+few_shot_adaptation: True
+checkpoint_path: "results/meta_train/stalkers_and_zealots/3s3z-3s4z-3s5z_vs_3s6z/new_task_repre_train/models/new_task_repre_train__odis_sz_1_2025-06-02_00-32-12"
+load_repre_dir: "outputs/meta_train/stalkers_and_zealots/3s3z-3s4z-3s5z_vs_3s6z/new_task_repre_train/new_task_repre_train__odis_sz_1_2025-06-02_00-32-12/task_repre"
+use_tensorboard: True

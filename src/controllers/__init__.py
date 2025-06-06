@@ -6,6 +6,7 @@ from .basic_dc_controller import BasicDCMAC
 from .trans_controller import TransMAC
 from .decomposed_controller import DecomposedMAC
 from .xtrans_controller import XTransMAC
+from .new_repre_controller import NewRepreMAC
 
 
 REGISTRY["basic_mac"] = BasicMAC
@@ -13,6 +14,7 @@ REGISTRY["basic_dc_mac"] = BasicDCMAC
 REGISTRY["decomposed_mac"] = DecomposedMAC
 REGISTRY["trans_mac"] = TransMAC
 REGISTRY["xtrans_mac"] = XTransMAC
+REGISTRY["new_repre_mac"] = NewRepreMAC
 
 
 # some mutli-task controllers

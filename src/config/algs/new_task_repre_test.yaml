@@ -1,0 +1,74 @@
+# --- XMeta test specific parameters ---
+
+# determine whether meta_train or meta_test
+meta_train: False
+meta_test: True
+
+# use epsilon greedy action selector
+action_selector: "epsilon_greedy"
+epsilon_start: 0.05
+epsilon_finish: 0.05
+epsilon_anneal_time: 50000
+
+runner: "episode"
+batch_size_run: 1
+batch_size: 32
+
+buffer_size: 5000
+
+# update the target network every {} episodes
+target_update_interval: 200
+
+# use the Q_Learner to train
+agent_output_type: "q"
+learner: "new_repre_learner"
+double_q: True
+mixer: "attn2_hx"
+mixing_embed_dim: 32
+hypernet_layers: 2
+hypernet_embed: 64
+
+agent: "sotax"
+
+# params about observation decomposition
+id_length: 4
+max_agent: 15
+
+# params about task_encoder
+dynamic_encoder: "pooling"
+dynamic_decoder: "mlp"
+task_repre_dim: 32
+
+state_latent_dim: 32
+
+pretrain: False
+dynamic_learning_end: 50000
+save_repre: True
+save_repre_interval: 1000
+only_repre_learning: False
+
+# params about xtrans mixing network
+entity_embed_dim: 64
+attn_embed_dim: 8
+
+# mac
+mac: "new_repre_mac"
+
+# params related with transfer training
+breakpoint_training: False
+transfer_training: True
+
+evaluate: True
+
+name: "new_repre_test"
+
+alpha: 1
+beta: 1
+lamda: 0.9
+
+# params of transfering
+single_task_runner: "single_runner"
+single_task_mac: "basic_dc_mac"
+single_task_agent: "sota"
+single_task_learner: "dc_learner"
+new_pretrain_method: True

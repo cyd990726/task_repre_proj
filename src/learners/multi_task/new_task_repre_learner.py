@@ -37,8 +37,8 @@ class NewTaskRepreLearner:
 
         self.params = list(mac.parameters())  # 获取mac的参数
         # 将新参数加入优化器
-        self.params += list(self.embedding.parameters())
-        self.params += list(self.transpose_embedding.parameters())
+        # self.params += list(self.embedding.parameters())
+        # self.params += list(self.transpose_embedding.parameters())
 
         self.last_target_update_episode = 0  # 初始化最后一次目标更新的环境步数
 
@@ -99,7 +99,11 @@ class NewTaskRepreLearner:
 
         if len(self.task2args) > 1:
             # 定义优化器
-            task_repre_optimizer = th.optim.RMSprop([task_repres], lr=0.00005, alpha=self.main_args.optim_alpha,
+            repre_params = [task_repres]
+            repre_params += list(self.embedding.parameters())
+            repre_params += list(self.transpose_embedding.parameters())
+
+            task_repre_optimizer = th.optim.RMSprop(repre_params, lr=0.00005, alpha=self.main_args.optim_alpha,
                                                     eps=self.main_args.optim_eps)
             # task_repre_optimizer = th.optim.Adam([task_repres], lr=1e-6, betas=(0.9, 0.999), eps=1e-8, weight_decay=0, amsgrad=False)
 
