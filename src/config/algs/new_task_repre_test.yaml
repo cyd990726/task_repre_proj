@@ -4,6 +4,8 @@
 meta_train: False
 meta_test: True
 
+t_max: 500000
+
 # use epsilon greedy action selector
 action_selector: "epsilon_greedy"
 epsilon_start: 0.05

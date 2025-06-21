@@ -20,12 +20,8 @@ class NewRepreLearner:
         self.logger = logger
         self.n_agents = args.n_agents
 
-
-                 # 添加设备配置
-        self.device = th.device("cuda" if main_args.use_cuda else "cpu")
-
-
-       
+        # 添加设备配置
+        self.device = th.device("cuda" if args.use_cuda else "cpu")
 
         self.params = list(mac.parameters()) # only contains agent parameters
 
@@ -33,11 +29,11 @@ class NewRepreLearner:
 
 
          # 添加嵌入层（假设任务表征维度为 task_repre_dim）
-        self.embedding = th.nn.Linear(main_args.task_repre_dim, 128).to(self.device)  # 嵌入维度可调整
-        self.transpose_embedding = th.nn.Linear(main_args.task_repre_dim, 128).to(self.device)
-          # 将新参数加入优化器
-        self.params += list(self.embedding.parameters())
-        self.params += list(self.transpose_embedding.parameters())
+        self.embedding = th.nn.Linear(args.task_repre_dim, 128).to(self.device)  # 嵌入维度可调整
+        self.transpose_embedding = th.nn.Linear(args.task_repre_dim, 128).to(self.device)
+          # 往新任务迁移的时候不需要将新参数加入优化器
+        # self.params += list(self.embedding.parameters())
+        # self.params += list(self.transpose_embedding.parameters())
         
         self.last_target_update_episode = 0
 
@@ -69,8 +65,6 @@ class NewRepreLearner:
                 raise ValueError("Mixer {} not recognised.".format(args.mixer))
             # agent参数加上mixer参数
             self.params += list(self.mixer.parameters())
-
-            
             self.target_mixer = copy.deepcopy(self.mixer)    
 
 
@@ -111,26 +105,30 @@ class NewRepreLearner:
         task_repres = th.stack(task_repres, dim=0)
         
         # 新任务的特征向量
-        new_task_repre = self.mac.task_repre
-        # 转置
-        transposed_new_task_repre = th.transpose(new_task_repre, 0, 1)
-        transposed_new_task_repre = transposed_new_task_repre.to(self.args.device)
-        transposed_new_task_repre = th.nn.Parameter(transposed_new_task_repre, requires_grad=True)
+        new_task_repre = self.mac.task_repre.detach().clone()  # (task_repre_dim, num_tasks)
         
+        new_task_repre = th.nn.Parameter(new_task_repre, requires_grad=True)   
+
         # 定义优化器
-        task_repre_optimizer = th.optim.RMSprop([transposed_new_task_repre], lr=0.00005, alpha=self.args.optim_alpha, eps=self.args.optim_eps)
-        #task_repre_optimizer = th.optim.Adam([task_repres], lr=1e-6, betas=(0.9, 0.999), eps=1e-8, weight_decay=0, amsgrad=False)
+        task_repre_optimizer = th.optim.RMSprop([new_task_repre], lr=0.00005, alpha=self.args.optim_alpha, eps=self.args.optim_eps)
    
         # 训练50000步
         for t in range(10000):
             # 进行矩阵相乘得到估计的回报
-            expected_returns = task_repres @ transposed_new_task_repre
+            # 先经过embeding
+            embedy_task_repres = self.embedding(task_repres)  # (num_tasks, task_repre_dim)
+            embedy_new_task_repre = self.transpose_embedding(new_task_repre)  # (task_repre_dim, num_tasks)
+            # 转置
+            embedy_transposed_new_task_repre = th.transpose(embedy_new_task_repre, 0, 1)
+
+            # 计算预期回报
+            expected_returns = embedy_task_repres @ embedy_transposed_new_task_repre
             task_repre_loss = th.sqrt(((expected_returns - task_returns)**2).sum())
 
             # 反向传播优化
             task_repre_optimizer.zero_grad()
             task_repre_loss.backward()
-            pred_grad_norm = th.nn.utils.clip_grad_norm_([transposed_new_task_repre], self.args.grad_norm_clip)
+            pred_grad_norm = th.nn.utils.clip_grad_norm_([new_task_repre], self.args.grad_norm_clip)
             task_repre_optimizer.step()
 
             # get grad norm scalar for tensorboard recording
@@ -138,25 +136,13 @@ class NewRepreLearner:
                 pred_grad_norm = pred_grad_norm.item()
             except:
                 pass
-            
-            # 首先，如果设置了保存任务表示（save_repre），并且当前任务的任务表示还没有被保存过，那么就调用mac.save_task_repres方法将任务表示保存到指定的文件中，
-            # 并将self.task2train_info[task]["repre_saved"]设置为True，表示该任务的任务表示已经被保存过了。
-            # if self.main_args.save_repre and not self.task2train_info[task]["repre_saved"]:
-            #     self.mac.save_task_repres(os.path.join(self.task2repre_dir[task], f"{t}.npy"), task)
-            #     self.task2train_info[task]["repre_saved"] = True
-
-            # 然后，如果当前环境步数（t_env）减去上一次记录训练信息的环境步数（self.task2train_info[task]["log_stats_t"]）大于或等于任务的学习日志间隔（self.task2args[task].learner_log_interval），
-            # 那么就记录一些训练信息，包括预测观察损失、预测状态损失、预测奖励损失和任务编码器梯度范数，并更新self.task2train_info[task]["log_stats_t"]为当前环境步数。
+            # 记录日志
             if t % 20 == 0:
                 # Dynamic learning phase
                 self.logger.log_stat("task_repres_loss", task_repre_loss.item(), t)
-                # self.logger.log_stat(f"{task}/pred_state_loss", pred_state_loss.item(), t_env)
-                # self.logger.log_stat(f"{task}/pred_reward_loss", pred_reward_loss.item(), t_env)
                 self.logger.log_stat("pred_grad_norm", pred_grad_norm, t)
         
         
-        # 训练完后保存任务表征
-        new_task_repre = th.transpose(transposed_new_task_repre, 0, 1)
         
         # 重置mac和target_mac里面特征向量的值
         self.mac.task_repre = new_task_repre.to(self.args.device).float()
@@ -519,7 +505,7 @@ class NewRepreLearner:
             
         if self.pi_mixer is not None:
             self.pi_mixer.cuda()
-            self.target_pi_mixer.cuda()
+
 
     def save_models(self, path):
         self.mac.save_models(path)
@@ -529,13 +515,17 @@ class NewRepreLearner:
             th.save(self.pi_mixer.state_dict(), "{}/pi_mixer.th".format(path))
             
         th.save(self.optimiser.state_dict(), "{}/opt.th".format(path))
-        th.save(self.optimiser_pi_i.state_dict(), "{}/opt_pi_i.th".format(path))
+        # th.save(self.optimiser_pi_i.state_dict(), "{}/opt_pi_i.th".format(path))
 
     # 加载只加载和pi_0相关的
     def load_models(self, path):
         self.mac.load_models(path)
         # Not quite right but I don't want to save target networks
         self.target_mac.load_models(path)
-        if self.mixer is not None:
-            self.mixer.load_state_dict(th.load("{}/mixer.th".format(path), map_location=lambda storage, loc: storage))
+        self.mixer.load_state_dict(th.load("{}/mixer.th".format(path), map_location=lambda storage, loc: storage))
+
+        # 嵌入层载入参数
+        self.embedding.load_state_dict(th.load("{}/embedding.th".format(path), map_location=lambda storage, loc: storage))
+        self.transpose_embedding.load_state_dict(th.load("{}/transpose_embedding.th".format(path), map_location=lambda storage, loc: storage))
+
         self.optimiser.load_state_dict(th.load("{}/opt.th".format(path), map_location=lambda storage, loc: storage))

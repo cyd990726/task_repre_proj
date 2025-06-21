@@ -14,6 +14,7 @@ env: "sc2"
 # model_paths: ["single_task_models/MMM/sota__whj_MMM_first_2024-04-17_19-14-32", "single_task_models/MMM2/sota__whj_MMM2_first_2024-04-17_19-29-49", "single_task_models/MMM4/sota__whj_MMM4_first_2024-04-17_19-30-31"]
 task: "sz_to_4s7z"
 
+
 model_paths: [
   "single_pre_train_model/3s3z",
   "single_pre_train_model/3s4z",
@@ -23,6 +24,6 @@ train_tasks: ["3s3z", "3s4z", "3s5z_vs_3s6z"]
 test_task: "4s7z"
 map_name: "4s7z"
 few_shot_adaptation: True
-checkpoint_path: "results/meta_train/stalkers_and_zealots/3s3z-3s4z-3s5z_vs_3s6z/new_task_repre_train/models/new_task_repre_train__odis_sz_1_2025-06-02_00-32-12"
-load_repre_dir: "outputs/meta_train/stalkers_and_zealots/3s3z-3s4z-3s5z_vs_3s6z/new_task_repre_train/new_task_repre_train__odis_sz_1_2025-06-02_00-32-12/task_repre"
+checkpoint_path: "source_task_model/sz/models/new_task_repre_train__new_repre_sz_1"
+load_repre_dir: "source_task_model/sz/repres/new_task_repre_train__new_repre_sz_1/task_repre"
 use_tensorboard: True

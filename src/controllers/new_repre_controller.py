@@ -65,6 +65,7 @@ class NewRepreMAC:
         self.task_repre = th.rand((1, self.args.task_repre_dim))
         norm = th.norm(self.task_repre, dim=-1).unsqueeze(-1)
         self.task_repre = self.task_repre/norm
+        self.task_repre = self.task_repre.to(self.args.device)
         
 
     def select_actions(self, ep_batch, t_ep, t_env, bs=slice(None), test_mode=False):

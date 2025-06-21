@@ -377,6 +377,9 @@ class NewTaskRepreLearner:
         if self.mixer is not None:
             th.save(self.mixer.state_dict(), "{}/mixer.th".format(path))
         th.save(self.optimiser.state_dict(), "{}/opt.th".format(path))
+        # 保存嵌入层
+        th.save( self.embedding.state_dict(), "{}/embedding.th".format(path))
+        th.save(self.transpose_embedding.state_dict(), "{}/transpose_embedding.th".format(path))
 
     def load_models(self, path):
         self.mac.load_models(path)
